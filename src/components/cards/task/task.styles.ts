@@ -5,12 +5,15 @@ type StatusProps = {
   status: boolean;
 };
 
-export const Container = styled.View<StatusProps>`
+export const Container = styled.View`
+  margin-bottom: ${RFValue(8)}px;
+`;
+
+export const Content = styled.View<StatusProps>`
   width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${RFValue(8)}px;
   background-color: ${({ theme, status }) =>
     status ? theme.colors.base500 : theme.colors.base400};
   border-radius: ${RFValue(8)}px;

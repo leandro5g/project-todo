@@ -2,11 +2,15 @@ import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
   align-items: center;
   padding-top: ${RFValue(48)}px;
   border-top-width: ${RFValue(1)}px;
   border-color: ${({ theme }) => theme.colors.base400};
+`;
+
+export const Image = styled.Image`
+  height: ${RFValue(56)}px;
+  width: ${RFValue(56)}px;
 `;
 
 export const TextMessage = styled.Text`

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useHandleTask } from "@hooks/tasks/useHandleTask";
 
+import Swipeable from "react-native-gesture-handler/Swipeable";
+
 import TrashSvg from "@assets/trash.svg";
 import CheckSvg from "@assets/check.svg";
+
+import { DeleteTask } from "./components/delete-task/delete-task.component";
 
 import {
   Container,
@@ -11,6 +15,7 @@ import {
   ContainerCheck,
   ContentText,
   Button,
+  Content,
 } from "./task.styles";
 
 type TaskProps = {
@@ -18,23 +23,31 @@ type TaskProps = {
 };
 
 const Task: React.FC<TaskProps> = ({ data }) => {
-  const { handleUpdateTask } = useHandleTask();
+  const { handleUpdateTask, handleRemoveTask } = useHandleTask();
 
   return (
-    <Container status={data?.status}>
-      <Button onPress={() => handleUpdateTask(data?.id)}>
-        <ContainerCheck status={data?.status}>
-          {data?.status && (
-            <CheckSvg height={RFValue(10)} width={RFValue(10)} />
-          )}
-        </ContainerCheck>
-      </Button>
+    <Container>
+      <Swipeable
+        overshootRight={false}
+        onSwipeableOpen={() => handleRemoveTask(data?.id)}
+        renderRightActions={() => <DeleteTask />}
+      >
+        <Content status={data?.status}>
+          <Button onPress={() => handleUpdateTask(data?.id)}>
+            <ContainerCheck status={data?.status}>
+              {data?.status && (
+                <CheckSvg height={RFValue(10)} width={RFValue(10)} />
+              )}
+            </ContainerCheck>
+          </Button>
 
-      <ContentText>
-        <TextTask status={data?.status}>{data?.content}</TextTask>
-      </ContentText>
+          <ContentText>
+            <TextTask status={data?.status}>{data?.content}</TextTask>
+          </ContentText>
 
-      <TrashSvg width={RFValue(14)} height={RFValue(14)} />
+          <TrashSvg width={RFValue(14)} height={RFValue(14)} />
+        </Content>
+      </Swipeable>
     </Container>
   );
 };

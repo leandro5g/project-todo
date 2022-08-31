@@ -8,6 +8,7 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { MyApp } from "./src/index";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
