@@ -6,5 +6,5 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.base700};
   width: 100%;
   align-items: center;
-  padding-top: ${RFValue(25)}px;
+  padding-top: ${RFValue(30)}px;
 `;
