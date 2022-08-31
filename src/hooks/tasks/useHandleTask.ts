@@ -6,10 +6,16 @@ export function useHandleTask() {
     TaskContext,
     (task) => task.handleAddTask
   );
+
   const handleRemoveTask = useContextSelector(
     TaskContext,
     (task) => task.handleRemoveTask
   );
 
-  return { handleAddTask, handleRemoveTask };
+  const handleUpdateTask = useContextSelector(
+    TaskContext,
+    (task) => task.handleUpdateTask
+  );
+
+  return { handleAddTask, handleRemoveTask, handleUpdateTask };
 }

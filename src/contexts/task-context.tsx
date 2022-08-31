@@ -7,6 +7,7 @@ type TaskContextData = {
   tasks: TaskDTO.TaskType[];
   handleAddTask(content: string): void;
   handleRemoveTask(taskId: string): void;
+  handleUpdateTask(taskId: string): void;
 };
 
 const TaskContext = createContext({} as TaskContextData);
@@ -51,6 +52,19 @@ const TaskContextProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const handleUpdateTask = useCallback(
+    (taskId: string) => {
+      setTasks((oldValue) => {
+        const tasksUpdated = oldValue?.map((task) =>
+          task.id !== taskId ? task : { ...task, status: !task?.status }
+        );
+        saveTasksStorage(tasksUpdated);
+        return tasksUpdated;
+      });
+    },
+    [tasks]
+  );
+
   const handleRemoveTask = useCallback(
     (taskId: string) => {
       const filterTasks = tasks.filter((task) => task.id !== taskId);
@@ -62,7 +76,9 @@ const TaskContextProvider: React.FC = ({ children }) => {
   );
 
   return (
-    <TaskContext.Provider value={{ tasks, handleAddTask, handleRemoveTask }}>
+    <TaskContext.Provider
+      value={{ tasks, handleAddTask, handleRemoveTask, handleUpdateTask }}
+    >
       {children}
     </TaskContext.Provider>
   );
