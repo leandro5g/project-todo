@@ -3,8 +3,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   width: 100%;
-  border-bottom-width: ${RFValue(1)}px;
-  border-color: ${({ theme }) => theme.colors.base400};
+
   padding-bottom: ${RFValue(20)}px;
 `;
 
