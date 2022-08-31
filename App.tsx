@@ -18,8 +18,8 @@ export default function App() {
     Inter_700Bold,
   });
 
-  if (fontsLoaded) {
-    SplashScreen.hideAsync();
-    return <MyApp />;
-  }
+  // if (fontsLoaded) {
+  //   SplashScreen.hideAsync();
+  //   return <MyApp />;
+  // }
 }
