@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { useHandleTask } from "@hooks/tasks/useHandleTask";
+import { useTask } from "@hooks/tasks/useTask";
 
 import { Input } from "@components/form/input/input.component";
 import { ButtonForm } from "@components/buttons/button-form/button-form.component";
@@ -20,16 +22,29 @@ type FormData = {
 };
 
 const FormTasks: React.FC = () => {
-  const { handleSubmit, control } = useForm();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
+  const { handleAddTask } = useHandleTask();
+  const { tasks } = useTask();
+
+  const countTaskDone = tasks.filter((task) => task.status === true).length;
 
   const onSubmit = useCallback(({ task }: FormData) => {
-    console.log(task);
+    handleAddTask(task);
+    reset();
+    clearErrors();
   }, []);
 
   return (
     <Container>
       <FormContainer>
         <Input
+          isError={errors?.task?.type === "required"}
           control={control}
           name="task"
           placeholder="Adicione uma nova tarefa"
@@ -41,7 +56,7 @@ const FormTasks: React.FC = () => {
         <WrapperTasks>
           <TasksCreated>Criadas</TasksCreated>
           <CounterContainer>
-            <CounterText>0</CounterText>
+            <CounterText>{tasks?.length}</CounterText>
           </CounterContainer>
         </WrapperTasks>
 
@@ -49,7 +64,7 @@ const FormTasks: React.FC = () => {
           <TasksFinish>Concluídas</TasksFinish>
 
           <CounterContainer>
-            <CounterText>0</CounterText>
+            <CounterText>{countTaskDone}</CounterText>
           </CounterContainer>
         </WrapperTasks>
       </ContentInfoTasks>

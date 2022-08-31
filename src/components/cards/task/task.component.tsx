@@ -10,15 +10,17 @@ import {
   ContentText,
 } from "./task.styles";
 
-const Task: React.FC = () => {
+type TaskProps = {
+  data: TaskDTO.TaskType;
+};
+
+const Task: React.FC<TaskProps> = ({ data }) => {
   return (
     <Container>
       <ContainerCheck></ContainerCheck>
 
       <ContentText>
-        <TextTask>
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
-        </TextTask>
+        <TextTask>{data?.content}</TextTask>
       </ContentText>
 
       <TrashSvg width={RFValue(14)} height={RFValue(14)} />

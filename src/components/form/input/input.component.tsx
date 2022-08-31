@@ -22,6 +22,9 @@ const Input: React.FC<InputProps> = ({ control, name, ...rest }) => {
       <Controller
         control={control}
         name={name}
+        rules={{
+          required: true,
+        }}
         render={({ field: { value, onChange } }) => (
           <InputText
             isFocus={isFocus}

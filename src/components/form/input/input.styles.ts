@@ -1,8 +1,9 @@
 import { RFValue } from "react-native-responsive-fontsize";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 type InputContainerProps = {
   isFocus?: boolean;
+  isError?: boolean;
 };
 
 export const Container = styled.View`
@@ -24,4 +25,10 @@ export const InputText = styled.TextInput.attrs(({ theme }) => ({
   border-width: ${RFValue(1)}px;
   border-color: ${({ isFocus, theme }) =>
     isFocus ? theme.colors?.secondaryDark : "transparent"};
+
+  ${({ isError }) =>
+    isError &&
+    css`
+      border-color: ${({ theme }) => theme.colors.danger};
+    `}
 `;
