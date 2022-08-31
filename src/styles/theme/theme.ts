@@ -9,6 +9,8 @@ export const theme = {
     danger: "#E25858",
     bg: "#333333",
 
+    base100: "#F2F2F2",
+    base300: "#808080",
     base500: "#262626",
     base700: "#0D0D0D",
   },

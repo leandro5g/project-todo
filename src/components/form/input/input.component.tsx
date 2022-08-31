@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { TextInputProps } from "react-native";
 
-import { Container } from "./input.styles";
+import { Container, InputText } from "./input.styles";
 
-const Input: React.FC = () => {
-  return <Container></Container>;
+interface InputProps extends TextInputProps {}
+
+const Input: React.FC<InputProps> = ({ ...rest }) => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const handleFocus = useCallback(() => {
+    setIsFocus((oldValue) => !oldValue);
+  }, []);
+
+  return (
+    <Container>
+      <InputText
+        isFocus={isFocus}
+        onBlur={handleFocus}
+        onFocus={handleFocus}
+        {...rest}
+      />
+    </Container>
+  );
 };
 
 export { Input };
