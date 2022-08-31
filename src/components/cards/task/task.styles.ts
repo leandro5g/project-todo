@@ -1,11 +1,13 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled, { css } from "styled-components/native";
+import { MotiView } from 'moti'
+
 
 type StatusProps = {
   status: boolean;
 };
 
-export const Container = styled.View`
+export const Container = styled(MotiView)`
   margin-bottom: ${RFValue(8)}px;
 `;
 

@@ -31,7 +31,7 @@ module.exports = function(api) {
           '@config': './src/config',
         },
       },
-    ],]
+    ],'react-native-reanimated/plugin',]
   };
 };
 

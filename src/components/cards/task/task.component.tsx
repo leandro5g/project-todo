@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useHandleTask } from "@hooks/tasks/useHandleTask";
+import { MotiView, useAnimationState } from "moti";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -26,7 +27,19 @@ const Task: React.FC<TaskProps> = ({ data }) => {
   const { handleUpdateTask, handleRemoveTask } = useHandleTask();
 
   return (
-    <Container>
+    <Container
+      from={{
+        opacity: 0.4,
+        top: -RFValue(30),
+      }}
+      animate={{
+        opacity: 1,
+        top: 0,
+      }}
+      transition={{
+        type: "timing",
+      }}
+    >
       <Swipeable
         overshootRight={false}
         onSwipeableOpen={() => handleRemoveTask(data?.id)}
