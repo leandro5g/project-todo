@@ -8,7 +8,6 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { MyApp } from "./src/index";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -18,8 +17,8 @@ export default function App() {
     Inter_700Bold,
   });
 
-  // if (fontsLoaded) {
-  //   SplashScreen.hideAsync();
-  //   return <MyApp />;
-  // }
+  if (fontsLoaded) {
+    SplashScreen.hideAsync();
+    return <MyApp />;
+  }
 }

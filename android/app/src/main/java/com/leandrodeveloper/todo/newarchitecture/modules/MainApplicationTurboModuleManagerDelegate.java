@@ -1,4 +1,4 @@
-package com.todo.newarchitecture.modules;
+package com.leandrodeveloper.todo.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

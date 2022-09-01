@@ -1,4 +1,4 @@
-package com.todo;
+package com.leandrodeveloper.todo;
 
 import android.os.Build;
 import android.os.Bundle;
